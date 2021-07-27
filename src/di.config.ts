@@ -14,8 +14,7 @@ import { ConsoleLogger, ExpandButtonHandler, ExpandButtonView, HtmlRoot,
     HtmlRootView, LogLevel, PreRenderedElement,
     PreRenderedView, SCompartment, SCompartmentView, SEdge, SGraph,
     SGraphView, SLabel, SLabelView, TYPES, configureModelElement,
-    overrideViewerOptions, SButton, CustomFeatures, moveFeature, openFeature,
-    expandFeature, selectFeature, loadDefaultModules } from 'sprotty';
+    overrideViewerOptions, SButton, loadDefaultModules } from 'sprotty';
 
 import {
     ResourceNodeView, GoalNodeView, SoftgoalNodeView, BeliefNodeView, TaskNodeView, IndicatorNodeView, HeaderCompartmentView, ModuleNodeView, SoftgoalNodeViewTry,
@@ -31,34 +30,18 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
 
     const context = { bind, unbind, isBound, rebind };
     configureModelElement(context, 'graph', SGraph, SGraphView);
-    const nodeFeatures: CustomFeatures = {
-        disable: [moveFeature],
-        enable: [openFeature]
-    };
-
-    const moduleFeatures: CustomFeatures = {
-        disable: [moveFeature],
-        enable: [openFeature, expandFeature]
-    };
-
-    const labelFeatures: CustomFeatures = {
-        enable: [selectFeature, openFeature]
-    };
-
-
-    configureModelElement(context, 'graph', SGraph, SGraphView);
-    configureModelElement(context, 'turnnode:goal', TURNNode, GoalNodeView, nodeFeatures)
-    configureModelElement(context, 'turnnode:softgoal', TURNNode, SoftgoalNodeView, nodeFeatures)
-    configureModelElement(context, 'turnnode:softgoaltry', TURNNode, SoftgoalNodeViewTry, nodeFeatures)
-    configureModelElement(context, 'turnnode:belief', TURNNode, BeliefNodeView, nodeFeatures)
-    configureModelElement(context, 'turnnode:actor', TURNNode, ModuleNodeView, moduleFeatures)
-    configureModelElement(context, 'turnnode:task', TURNNode, TaskNodeView, nodeFeatures)
-    configureModelElement(context, 'turnnode:indicator', TURNNode, IndicatorNodeView, nodeFeatures)
-    configureModelElement(context, 'turnnode:resource', TURNNode, ResourceNodeView, nodeFeatures)
-    configureModelElement(context, 'label:heading', SLabel, SLabelView, labelFeatures)
-    configureModelElement(context, 'label:text', SLabel, SLabelView, labelFeatures)
-    configureModelElement(context, 'turnlabel:text', TURNLabel, SLabelView, labelFeatures)
-    configureModelElement(context, 'label:classHeader', SLabel, SLabelView, labelFeatures)
+    configureModelElement(context, 'turnnode:goal', TURNNode, GoalNodeView)
+    configureModelElement(context, 'turnnode:softgoal', TURNNode, SoftgoalNodeView)
+    configureModelElement(context, 'turnnode:softgoaltry', TURNNode, SoftgoalNodeViewTry)
+    configureModelElement(context, 'turnnode:belief', TURNNode, BeliefNodeView)
+    configureModelElement(context, 'turnnode:actor', TURNNode, ModuleNodeView)
+    configureModelElement(context, 'turnnode:task', TURNNode, TaskNodeView)
+    configureModelElement(context, 'turnnode:indicator', TURNNode, IndicatorNodeView)
+    configureModelElement(context, 'turnnode:resource', TURNNode, ResourceNodeView)
+    configureModelElement(context, 'label:heading', SLabel, SLabelView)
+    configureModelElement(context, 'label:text', SLabel, SLabelView)
+    configureModelElement(context, 'turnlabel:text', TURNLabel, SLabelView)
+    configureModelElement(context, 'label:classHeader', SLabel, SLabelView)
     configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView)
     configureModelElement(context, 'comp:classHeader', SCompartment, HeaderCompartmentView)
     configureModelElement(context, 'edge:dependency', SEdge, DependencyEdgeView)
@@ -73,7 +56,7 @@ const turnDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) =>
 export default function createContainer(widgetId: string): Container {
     const container = new Container()
     loadDefaultModules(container);
-    container.load(turnDiagramModule);
+    container.load(turnDiagramModule)
     //        container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
     overrideViewerOptions(container, {
         needsClientLayout: true,
