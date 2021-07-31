@@ -13,8 +13,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import '../css/diagram.css';
-import 'sprotty/css/sprotty.css';
+import 'reflect-metadata';
+import 'sprotty-vscode-webview/css/sprotty-vscode.css';
 import { Container } from 'inversify';
-export declare function createTURNDiagramContainer(widgetId: string): Container;
-//# sourceMappingURL=di.config.d.ts.map
+import { SprottyDiagramIdentifier } from 'sprotty-vscode-webview';
+import { SprottyLspEditStarter } from 'sprotty-vscode-webview/lib/lsp/editing';
+export declare class TURNSprottyStarter extends SprottyLspEditStarter {
+    createContainer(diagramIdentifier: SprottyDiagramIdentifier): Container;
+    protected addVscodeBindings(container: Container, diagramIdentifier: SprottyDiagramIdentifier): void;
+}
+//# sourceMappingURL=main.d.ts.map

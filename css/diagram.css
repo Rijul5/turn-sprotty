@@ -1,3 +1,51 @@
+
+.sprotty-node {
+    stroke: #a17474;
+    stroke-width: 1;
+}
+
+.sprotty-graph {
+    font-size: 15pt;
+}
+
+.sprotty-label {
+    stroke-width: 0;
+    fill: rgb(255, 249, 249);
+    font-size: 0.6em;
+    font-weight: inherit;
+    text-align: inherit;
+}
+
+.sprotty-label.heading {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+
+.sprotty-label.description {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+
+.sprotty-popup {
+    position: absolute;
+    background: #FFE9BE;
+    border-radius: 0px;
+    border: none;
+    max-width: initial;
+    min-width: initial;
+}
+
+.sprotty-infoRow {
+    display: flex;
+    font-size: small;
+}
+
+.sprotty-infoTitle {
+    width: 130px;
+    font-weight: bold;
+}
 .module circle.tag,
 .module .comp text.classHeader {
     fill: #FFE9BE   
@@ -255,3 +303,74 @@ text.classHeader {
     font-weight: bold;
     stroke: none;
 }
+
+.module {
+    fill: #1f2424;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+/* 
+.actor {
+    fill: #dbb0d4;
+    stroke: #ffffff;
+    stroke-width: 2;
+} */
+
+.module > .comp > .sprotty-label {
+    font-weight: normal;
+    fill: #ffffff;
+    white-space: nowrap;
+    font-size: medium;
+}
+
+.sprotty-button {
+    stroke-width: 0;
+}
+
+.module .note, .module .note.mouseover {
+    stroke: #000;
+    stroke-width: 1;
+}
+
+.module .note.mouseover .front,
+.module .note.mouseover .noteEdge {
+    fill: #e2c87a;
+}
+
+
+.goal {
+    fill: #159910af;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+body {
+    background-color: #333333;
+}
+
+.sprotty-example {
+    fill: #bdc98a;
+    stroke: #1d1d1b;
+    stroke-width: 5;
+}
+
+.sprotty-edge {
+    fill: none;
+    stroke: rgb(181, 182, 221);
+    stroke-width: 2px;
+}
+
+.sprotty-edge.composition {
+    fill: rgb(181, 182, 221);
+}
+
+
+.sprotty-edge.contribution {
+    fill: rgb(181, 182, 221);
+}
+
+.sprotty-edge.dashed {
+    stroke-dasharray: 5 5;
+}
+
+

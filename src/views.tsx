@@ -1,12 +1,26 @@
-/*
- * Copyright (C) 2017 TypeFox and others.
+/********************************************************************************
+ * Copyright (c) 2020 TypeFox and others.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- */
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the Eclipse
+ * Public License v. 2.0 are satisfied: GNU General Public License, version 2
+ * with the GNU Classpath Exception which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ ********************************************************************************/
 
 /** @jsx svg */
 import { svg } from 'snabbdom-jsx';
+
+import { VNode } from "snabbdom/vnode";
+import { injectable } from 'inversify';
+
+
 
 import {
     RenderingContext,
@@ -15,10 +29,11 @@ import {
     PolylineEdgeView,
     Point,
     toDegrees, IView, setAttr
-} from "sprotty/lib"
-import { VNode } from "snabbdom/vnode"
-import { TURNNode, ModuleNode, MAPStartNode, Tag } from "./turn-models"
+} from "sprotty"
 
+import { TURNNode, ModuleNode, MAPStartNode, Tag } from "./model"
+
+@injectable()
 export class ClassNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node={true}>
@@ -32,6 +47,7 @@ export class ClassNodeView implements IView {
     }
 }
 
+@injectable()
 export class ResourceNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node={true}>
@@ -44,6 +60,7 @@ export class ResourceNodeView implements IView {
     }
 }
 
+@injectable()
 export class HeaderCompartmentView implements IView {
     render(model: SCompartment, context: RenderingContext): VNode {
         const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
@@ -58,6 +75,7 @@ export class HeaderCompartmentView implements IView {
     }
 }
 
+@injectable()
 export class TagView implements IView {
     render(element: Tag, context: RenderingContext): VNode {
         const radius = 0.5 * element.size.width
@@ -68,6 +86,7 @@ export class TagView implements IView {
     }
 }
 
+@injectable()
 export class ClassNodeView2 implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node={true}>
@@ -80,6 +99,7 @@ export class ClassNodeView2 implements IView {
     }
 }
 
+@injectable()
 export class ModuleNodeView implements IView {
     render(node: ModuleNode, context: RenderingContext): VNode {
         return <g class-sprotty-node={true} class-module={true} class-mouseover={node.hoverFeedback}>
@@ -91,6 +111,7 @@ export class ModuleNodeView implements IView {
     }
 }
 
+@injectable()
 export class TaskNodeView implements IView {
     render(model: TURNNode, context: RenderingContext): VNode {
         const width = Math.max(0, model.size.width * 0.5)
@@ -104,6 +125,7 @@ export class TaskNodeView implements IView {
     }
 }
 
+@injectable()
 export class IndicatorNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const radius = node.size.width
@@ -115,6 +137,7 @@ export class IndicatorNodeView implements IView {
     }
 }
 
+@injectable()
 export class SoftgoalNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node="{true}">
@@ -129,6 +152,7 @@ export class SoftgoalNodeView implements IView {
     }
 }
 
+@injectable()
 export class SoftgoalNodeViewTry implements IView {
     render(example: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-example="{true}">
@@ -143,6 +167,7 @@ export class SoftgoalNodeViewTry implements IView {
     }
 }
 
+@injectable()
 export class GoalNodeView extends SoftgoalNodeView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node={true}>
@@ -157,6 +182,7 @@ export class GoalNodeView extends SoftgoalNodeView {
     }
 }
 
+@injectable()
 export class BeliefNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node="{true}">
@@ -171,7 +197,7 @@ export class BeliefNodeView implements IView {
     }
 }
 
-
+@injectable()
 export class ModuleNodeView2 implements IView {
     render(node: MAPStartNode, context: RenderingContext): VNode {
         const radius = this.getRadius(node);
@@ -190,6 +216,7 @@ export class ModuleNodeView2 implements IView {
     }
 }
 
+@injectable()
 export class ChoiceNodeView implements IView {
     render(model: TURNNode, context: RenderingContext): VNode {
         const width = Math.max(0, model.size.width * 0.5)
@@ -203,6 +230,7 @@ export class ChoiceNodeView implements IView {
     }
 }
 
+@injectable()
 export class ActorNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g id='layer1' fill='none' stroke='#000'>
@@ -220,6 +248,7 @@ export class ActorNodeView implements IView {
     }
 }
 
+@injectable()
 export class CaseNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node="{true}">
@@ -234,6 +263,7 @@ export class CaseNodeView implements IView {
     }
 }
 
+@injectable()
 export class UsesNodeView extends CaseNodeView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const vnode = <g class-sprotty-node={true}>
@@ -248,6 +278,7 @@ export class UsesNodeView extends CaseNodeView {
     }
 }
 
+@injectable()
 export class NoteView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         return <g class-note={true} class-mouseover={node.hoverFeedback}>
@@ -257,6 +288,7 @@ export class NoteView implements IView {
     }
 }
 
+@injectable()
 export class CompositionEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
@@ -276,6 +308,7 @@ export class CompositionEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class DependencyEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
@@ -294,6 +327,7 @@ export class DependencyEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class DecompositionEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
@@ -313,6 +347,7 @@ export class DecompositionEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class DashedEdgeView extends PolylineEdgeView {
     protected renderLine(edge: SEdge, segments: Point[], context: RenderingContext): VNode {
         const firstPoint = segments[0]
@@ -325,6 +360,7 @@ export class DashedEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class CorrelationEdgeView extends DashedEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
@@ -342,6 +378,7 @@ export class CorrelationEdgeView extends DashedEdgeView {
     }
 }
 
+@injectable()
 export class ContributeEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
@@ -359,6 +396,7 @@ export class ContributeEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class ArrowEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[segments.length - 2]
@@ -376,6 +414,7 @@ export class ArrowEdgeView extends PolylineEdgeView {
     }
 }
 
+@injectable()
 export class DashedArrowEdgeView extends DashedEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[segments.length - 2]
@@ -393,10 +432,12 @@ export class DashedArrowEdgeView extends DashedEdgeView {
     }
 }
 
+
 export function angle(x0: Point, x1: Point): number {
     return toDegrees(Math.atan2(x1.y - x0.y, x1.x - x0.x))
 }
 
+@injectable()
 export class CircleNodeView implements IView {
     render(node: TURNNode, context: RenderingContext): VNode {
         const radius = this.getRadius(node);
@@ -410,3 +451,4 @@ export class CircleNodeView implements IView {
         return 40;
     }
 }
+

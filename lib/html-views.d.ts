@@ -13,8 +13,9 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import '../css/diagram.css';
-import 'sprotty/css/sprotty.css';
-import { Container } from 'inversify';
-export declare function createTURNDiagramContainer(widgetId: string): Container;
-//# sourceMappingURL=di.config.d.ts.map
+import { RenderingContext, IView, SButton } from "sprotty";
+import { VNode } from "snabbdom/vnode";
+export declare class PaletteButtonView implements IView {
+    render(button: SButton, context: RenderingContext): VNode;
+}
+//# sourceMappingURL=html-views.d.ts.map
